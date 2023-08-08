@@ -69,6 +69,18 @@ async function loadJokes() {
     }
 }
 
+// Log the user interaction with timestamp
+function logInteraction(userInput, botResponse) {
+    const timestamp = new Date().toISOString();
+    const logEntry = `${timestamp} - User: ${userInput} | Bot: ${botResponse}\n`;
+
+    fs.appendFile('log.txt', logEntry, (err) => {
+        if (err) {
+            console.error('Error writing to log.txt:', err);
+        }
+    });
+}
+
 // Function to handle user feedback and update log
 function handleFeedback(feedback) {
     const lastMessage = conversationLog[conversationLog.length - 1];
