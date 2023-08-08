@@ -7,7 +7,7 @@ const responses = [
 const jokes = [
 	"Why don't scientists trust atoms? Because they make up everything!",
 	// Add more jokes
-};
+];
 
 let conversationLog = [];
 
