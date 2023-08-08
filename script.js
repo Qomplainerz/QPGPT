@@ -69,16 +69,17 @@ async function loadJokes() {
     }
 }
 
-// Log the user interaction with timestamp
 function logInteraction(userInput, botResponse) {
+    // Log the user interaction with timestamp
     const timestamp = new Date().toISOString();
     const logEntry = `${timestamp} - User: ${userInput} | Bot: ${botResponse}\n`;
 
-    fs.appendFile('log.txt', logEntry, (err) => {
-        if (err) {
-            console.error('Error writing to log.txt:', err);
-        }
-    });
+    // Create a Blob and use the FileWriter API to write to the log file
+    const blob = new Blob([logEntry], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'log.txt';
+    a.click();
 }
 
 // Function to handle user feedback and update log
