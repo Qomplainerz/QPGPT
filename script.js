@@ -16,15 +16,13 @@ async function processUserInput(userInput) {
         }
     }
 
-    // Load jokes from jokes.txt
-    const jokes = await loadJokes();
+    if (trimmedInput.includes("tell me a joke")) {
+        // Load jokes from jokes.txt
+        const jokes = await loadJokes();
 
-    // Check if input matches any joke
-    for (const joke of jokes) {
-        if (trimmedInput.includes(joke)) {
-            botResponse = joke;
-            break;
-        }
+        // Randomly select a joke
+        const randomIndex = Math.floor(Math.random() * jokes.length);
+        botResponse = jokes[randomIndex];
     }
 
     // Display bot's response
