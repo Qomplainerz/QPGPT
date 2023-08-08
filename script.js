@@ -94,6 +94,9 @@ submitBtn.addEventListener("click", function() {
     displayMessage("User: ", userInput);
     conversationLog.push({ sender: "user", message: userInput });
     processUserInput(userInput);
+
+    // Clear user input field
+    document.getElementById("userInput").value = "";
 });
 
 // Event listener for feedback
