@@ -1,32 +1,25 @@
-const fs = require('fs');
-const readline = require('readline');
-
 // Function to load responses from responses.txt
 async function loadResponses() {
-    return new Promise((resolve, reject) => {
-        fs.readFile('responses.txt', 'utf8', (err, data) => {
-            if (err) {
-                reject(err);
-            } else {
-                const responses = JSON.parse(data);
-                resolve(responses);
-            }
-        });
-    });
+    try {
+        const response = await fetch('responses.txt');
+        const data = await response.text();
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Error loading responses:', error);
+        return [];
+    }
 }
 
 // Function to load jokes from jokes.txt
 async function loadJokes() {
-    return new Promise((resolve, reject) => {
-        fs.readFile('jokes.txt', 'utf8', (err, data) => {
-            if (err) {
-                reject(err);
-            } else {
-                const jokes = JSON.parse(data);
-                resolve(jokes);
-            }
-        });
-    });
+    try {
+        const response = await fetch('jokes.txt');
+        const data = await response.text();
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Error loading jokes:', error);
+        return [];
+    }
 }
 
 // Function to process user input
