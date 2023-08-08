@@ -20,9 +20,13 @@ async function processUserInput(userInput) {
         // Load jokes from jokes.txt
         const jokes = await loadJokes();
 
-        // Randomly select a joke
-        const randomIndex = Math.floor(Math.random() * jokes.length);
-        botResponse = jokes[randomIndex];
+        if (jokes.length > 0) {
+            // Randomly select a joke
+            const randomIndex = Math.floor(Math.random() * jokes.length);
+            botResponse = jokes[randomIndex];
+        } else {
+            botResponse = "I'm sorry, I don't have any jokes right now.";
+        }
     }
 
     // Display bot's response
