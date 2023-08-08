@@ -1,11 +1,3 @@
-// Sample data
-const jokes = [
-    "Why don't scientists trust atoms? Because they make up everything!",
-    "Why did the bicycle fall over? Because it was two-tired!",
-    "Why was the maths book sad? Because it had too many problems!",
-    // Add more jokes
-];
-
 let conversationLog = [];
 
 // Function to process user input
@@ -20,6 +12,17 @@ async function processUserInput(userInput) {
     for (const entry of responses) {
         if (trimmedInput.includes(entry.input)) {
             botResponse = entry.response;
+            break;
+        }
+    }
+
+    // Load jokes from jokes.txt
+    const jokes = await loadJokes();
+
+    // Check if input matches any joke
+    for (const joke of jokes) {
+        if (trimmedInput.includes(joke)) {
+            botResponse = joke;
             break;
         }
     }
@@ -46,6 +49,20 @@ async function loadResponses() {
         return responses;
     } catch (error) {
         console.error("Error loading responses:", error);
+        return [];
+    }
+}
+
+// Function to load jokes from jokes.txt
+async function loadJokes() {
+    try {
+        const response = await fetch("jokes.txt");
+        const text = await response.text();
+        const jokes = text.split("\n");
+
+        return jokes;
+    } catch (error) {
+        console.error("Error loading jokes:", error);
         return [];
     }
 }
