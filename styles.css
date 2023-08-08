@@ -1,0 +1,84 @@
+/* Reset some default styles */
+body, h1
+{
+	margin: 0;
+	padding: 0;
+}
+
+/* Basic styling */
+body
+{
+	font-family: Arial, sans-serif;
+	background-color: #f5f5f5;
+	color: #333;
+}
+
+header
+{
+	background-color: #4285f4;
+	color: white;
+	text-align: center;
+	padding: 1rem 0;
+}
+
+.main
+{
+	max-width: 1920px;
+	margin: 0 auto;
+	padding: 2rem;
+	background-color: white;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Chat display */
+.chat-display
+{
+	max-height: 1080px;
+	overflow-y: auto;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 1rem;
+	background-color: #f9f9f9;
+	margin-bottom: 1rem;
+}
+
+/* User input */
+.user-input
+{
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+#userInput
+{
+	flex-grow: 1;
+	padding: 0.5rem;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+button
+{
+	background-color: #4285f4;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+}
+
+#feedbackBtn
+{
+	background-color: #fbbc05;
+}
+
+/* Adjustment for smaller screens */
+@media screen and (max-width: 600px)
+{
+	.main
+	{
+		padding: 1rem;
+	}
+}
