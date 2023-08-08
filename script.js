@@ -1,3 +1,13 @@
+// Function to display messages in the chat display
+function displayMessage(sender, message) 
+{
+    const chatDisplay = document.getElementById("chat-display");
+    const messageElement = document.createElement("div");
+    messageElement.className = "message";
+    messageElement.textContent = sender + message;
+    chatDisplay.appendChild(messageElement);
+}
+
 // Sample data
 const responses = [
 	{ input: "hello", response: "Hello, how can I assist you today?" },
