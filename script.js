@@ -47,12 +47,14 @@ function handleFeedback(feedback)
 }
 
 // Function to display messages in the chat display
-function displayMessage(sender, message) 
-{
+function displayMessage(sender, message) {
     const chatDisplay = document.getElementById("chat-display");
     const messageElement = document.createElement("div");
-    messageElement.className = "message"; // Update with your CSS class
+    
+    // Replace "chat-message" with your actual CSS class for chat messages
+    messageElement.className = "chat-message"; 
     messageElement.textContent = sender + message;
+    
     chatDisplay.appendChild(messageElement);
 }
 
