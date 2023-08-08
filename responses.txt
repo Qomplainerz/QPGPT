@@ -1,1 +1,11 @@
-
+hello|Hello! How can I assist you today?
+hi|Hi! How can I assist you today?
+hey|Hey! How can I assist you today?
+good morning|Good morning! How can I assist you today?
+good day|Good day! How can I assist you today?
+good afternoon|Good afternoon! How can I assist you today?
+good evening|Good evening! How can I assist you today?
+good night|Good night! Hope to see you again soon!
+bye|Bye! Hope to see you again soon!
+goodbye|Goodbye! Hope to see you again soon!
+good bye|Goodbye! Hope to see you again soon!
