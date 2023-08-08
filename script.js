@@ -1,39 +1,24 @@
 // Sample data
-const responses = [
-    	{ input: "hello", response: "Hello! How can I assist you today?" },
-	{ input: "hi", response: "Hi! How can I assist you today?" },
-	{ input: "hey", response: "Hey! How can I assist you today?" },
-	{ input: "good morning", response: "Good morning! How can I assist you today?" },
-	{ input: "good day", response: "Good day! How can I assist you today?" },
-	{ input: "good afternoon", response: "Good afternoon! How can I assist you today?" },
-	{ input: "good evening", response: "Good evening! How can I assist you today?" },
-	{ input: "good night", response: "Good night! Hope to see you again soon!" },
-	{ input: "bye", response: "Bye! Hope to see you again soon!" },
-	{ input: "goodbye", response: "Goodbye! Hope to see you again soon!" },
-	{ input: "good bye", response: "Goodbye! Hope to see you again soon!" },
-    // Add more responses
-];
-
 const jokes = [
-    	"Why don't scientists trust atoms? Because they make up everything!",
-	"Why did the bicycle fall over? Because it was two-tired!",
-	"Why was the maths book sad? Because it had too many problems!",
+    "Why don't scientists trust atoms? Because they make up everything!",
+    "Why did the bicycle fall over? Because it was two-tired!",
+    "Why was the maths book sad? Because it had too many problems!",
     // Add more jokes
 ];
 
 let conversationLog = [];
 
 // Function to process user input
-function processUserInput(userInput) 
-{
+async function processUserInput(userInput) {
     const trimmedInput = userInput.trim().toLowerCase();
     let botResponse = "I am not sure how to respond to that";
 
+    // Load responses from responses.txt
+    const responses = await loadResponses();
+
     // Check if input matches any response
-    for (const entry of responses) 
-    {
-        if (trimmedInput.includes(entry.input)) 
-	{
+    for (const entry of responses) {
+        if (trimmedInput.includes(entry.input)) {
             botResponse = entry.response;
             break;
         }
@@ -46,12 +31,29 @@ function processUserInput(userInput)
     displayMessage("QP GPT: ", "Were you happy with the response?");
 }
 
+// Function to load responses from responses.txt
+async function loadResponses() {
+    try {
+        const response = await fetch("responses.txt");
+        const text = await response.text();
+        const lines = text.split("\n");
+
+        const responses = lines.map(line => {
+            const [input, response] = line.split("|");
+            return { input, response };
+        });
+
+        return responses;
+    } catch (error) {
+        console.error("Error loading responses:", error);
+        return [];
+    }
+}
+
 // Function to handle user feedback and update log
-function handleFeedback(feedback) 
-{
+function handleFeedback(feedback) {
     const lastMessage = conversationLog[conversationLog.length - 1];
-    if (lastMessage && lastMessage.sender === "QP GPT") 
-    {
+    if (lastMessage && lastMessage.sender === "QP GPT") {
         lastMessage.feedback = feedback;
     }
     // Update log.txt (simulated)
@@ -59,22 +61,20 @@ function handleFeedback(feedback)
 }
 
 // Function to display messages in the chat display
-function displayMessage(sender, message) 
-{
+function displayMessage(sender, message) {
     const chatDisplay = document.getElementById("chat-display");
     const messageElement = document.createElement("div");
-    
+
     // Replace "chat-message" with your actual CSS class for chat messages
-    messageElement.className = "chat-message"; 
+    messageElement.className = "chat-message";
     messageElement.textContent = sender + message;
-    
+
     chatDisplay.appendChild(messageElement);
 }
 
 // Event listener for user input
 const submitBtn = document.getElementById("submitBtn");
-submitBtn.addEventListener("click", function() 
-{
+submitBtn.addEventListener("click", function() {
     const userInput = document.getElementById("userInput").value;
     displayMessage("User: ", userInput);
     conversationLog.push({ sender: "user", message: userInput });
@@ -83,8 +83,7 @@ submitBtn.addEventListener("click", function()
 
 // Event listener for feedback
 const feedbackBtn = document.getElementById("feedbackBtn");
-feedbackBtn.addEventListener("click", function() 
-{
+feedbackBtn.addEventListener("click", function() {
     const feedback = window.confirm("Were you happy with the response?");
     handleFeedback(feedback);
 });
