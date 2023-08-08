@@ -53,6 +53,47 @@ function handleFeedback(feedback)
     if (lastMessage && lastMessage.sender === "QP GPT") 
     {
         lastMessage.feedback = feedback;
+
+        // Append textarea for user feedback
+        const feedbackArea = document.createElement("textarea");
+        feedbackArea.rows = "4"; // Customize the number of rows as needed
+        feedbackArea.cols = "40"; // Customize the number of columns as needed
+        feedbackArea.placeholder = "Provide your feedback here...";
+
+        // Append radio buttons
+        const happyRadio = document.createElement("input");
+        happyRadio.type = "radio";
+        happyRadio.name = "feedback";
+        happyRadio.value = "happy";
+        const happyLabel = document.createElement("label");
+        happyLabel.textContent = "I was happy";
+        happyLabel.appendChild(happyRadio);
+
+        const notHappyRadio = document.createElement("input");
+        notHappyRadio.type = "radio";
+        notHappyRadio.name = "feedback";
+        notHappyRadio.value = "not happy";
+        const notHappyLabel = document.createElement("label");
+        notHappyLabel.textContent = "I was not happy";
+        notHappyLabel.appendChild(notHappyRadio);
+
+        // Append submit button
+        const submitFeedbackBtn = document.createElement("button");
+        submitFeedbackBtn.textContent = "Submit Feedback";
+        submitFeedbackBtn.addEventListener("click", function() 
+	{
+            const feedbackValue = document.querySelector("input[name='feedback']:checked").value;
+            const feedbackText = feedbackArea.value;
+            console.log("Feedback:", feedbackValue);
+            console.log("Feedback Text:", feedbackText);
+        });
+
+        // Append elements to chat display
+        const chatDisplay = document.getElementById("chat-display");
+        chatDisplay.appendChild(feedbackArea);
+        chatDisplay.appendChild(happyLabel);
+        chatDisplay.appendChild(notHappyLabel);
+        chatDisplay.appendChild(submitFeedbackBtn);
     }
     // Update log.txt (simulated)
     console.log(conversationLog);
@@ -63,11 +104,8 @@ function displayMessage(sender, message)
 {
     const chatDisplay = document.getElementById("chat-display");
     const messageElement = document.createElement("div");
-    
-    // Replace "chat-message" with your actual CSS class for chat messages
-    messageElement.className = "chat-message"; 
+    messageElement.className = "chat-message"; // Replace with your actual CSS class
     messageElement.textContent = sender + message;
-    
     chatDisplay.appendChild(messageElement);
 }
 
