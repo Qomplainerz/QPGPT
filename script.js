@@ -1,11 +1,20 @@
 // Sample data
 const responses = [
 	{ input: "hello", response: "Hello, how can I assist you today?" },
+	{ input: "hi", response: "Hello, how can I assist you today?" },
+	{ input: "hey", response: "Hello, how can I assist you today?" },
+	{ input: "good morning", response: "Good morning! How can I assist you today?" },
+	{ input: "good day", response: "Good day! How can I assist you today?" },
+	{ input: "good afternoon", response: "Good afternoon! How can I assist you today?" },
+	{ input: "good evening", response: "Good evening! How can I assist you today?" },
+	{ input: "good night", response: "Good night! Hope to see you again soon." },
 	// Add more responses
 ];
 
 const jokes = [
 	"Why don't scientists trust atoms? Because they make up everything!",
+	"Why did the bicycle fall over? Because it was two-tired!",
+	"Why was the maths book sad? Because it had too many problems!",
 	// Add more jokes
 ];
 
