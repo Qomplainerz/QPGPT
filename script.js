@@ -30,7 +30,7 @@ function getRandomJoke()
 // Function to process user input
 function processUserInput(userInput)
 {
-	const trimmedInput = userInput.trim().toLowercase();
+	const trimmedInput = userInput.trim().toLowerCase();
 	let botResponse = "I am not sure how to respond to that";
 
 	// Check if input matches any response
