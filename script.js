@@ -31,8 +31,7 @@ async function loadJokes() {
 }
 
 // Function to process user input
-async function processUserInput(userInput) 
-{
+async function processUserInput(userInput) {
     const trimmedInput = userInput.trim().toLowerCase();
     let botResponse = "I am not sure how to respond to that";
 
@@ -40,17 +39,14 @@ async function processUserInput(userInput)
     const responses = await loadResponses();
 
     // Check if input matches any response
-    for (const entry of responses) 
-    {
-        if (trimmedInput.includes(entry.input)) 
-        {
+    for (const entry of responses) {
+        if (trimmedInput.includes(entry.input)) {
             botResponse = entry.response;
             break;
         }
     }
 
-    if (trimmedInput.includes("tell me a joke")) 
-    {
+    if (trimmedInput.includes("tell me a joke")) {
         // Load jokes from jokes.txt
         const jokes = await loadJokes();
 
@@ -66,7 +62,7 @@ async function processUserInput(userInput)
     displayMessage("QP GPT: ", "Were you happy with the response?");
 
     // Log user input, bot response, and feedback
-    logInteraction(userInput, botResponse);
+    logInteraction(userInput, botResponse); // <-- Add this line
 }
 
 // Function to display messages in the chat display
